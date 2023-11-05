@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/get_input_args.py
-#                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                   
-# REVISED DATE: 
-# PURPOSE: Create a function that retrieves the following 3 command line inputs 
-#          from the user using the Argparse Python module. If the user fails to 
+#
+# PROGRAMMER:
+# DATE CREATED:
+# REVISED DATE:
+# PURPOSE: Create a function that retrieves the following 3 command line inputs
+#          from the user using the Argparse Python module. If the user fails to
 #          provide some or all of the 3 inputs, then the default values are
 #          used for the missing inputs. Command Line Arguments:
 #     1. Image Folder as --dir with default value 'pet_images'
@@ -15,12 +15,16 @@
 #
 ##
 # Imports python modules
+
 import argparse
+from constants.args_constants import ArgsConstants
 
 # TODO 1: Define get_input_args function below please be certain to replace None
-#       in the return statement with parser.parse_args() parsed argument 
+#       in the return statement with parser.parse_args() parsed argument
 #       collection that you created with this function
-# 
+#
+
+
 def get_input_args():
     """
     Retrieves and parses the 3 command line arguments provided by the user when
@@ -38,6 +42,21 @@ def get_input_args():
     Returns:
      parse_args() -data structure that stores the command line arguments object  
     """
-    # Replace None with parser.parse_args() parsed argument collection that 
-    # you created with this function 
-    return None
+    # Replace None with parser.parse_args() parsed argument collection that
+    # you created with this function
+
+    # Create argument parser
+    parser = argparse.ArgumentParser()
+
+    # 1. Image Folder as --dir with default value 'pet_images'
+    parser.add_argument(ArgsConstants.DIR_FLAG, type=str, default=ArgsConstants.DIR_DEFAULT,
+                        help=ArgsConstants.DIR_HELP)
+    # 2. CNN Model Architecture as --arch with default value 'vgg'
+    parser.add_argument(ArgsConstants.ARCH_FLAG, type=str, default=ArgsConstants.ARCH_DEFAULT,
+                        help=ArgsConstants.ARCH_HELP)
+    # 3. Text File with Dog Names as --dogfile with default value 'dognames.txt'
+    parser.add_argument(ArgsConstants.DOGFILE_FLAG, type=str,
+                        default=ArgsConstants.DOGFILE_DEFAULT, help=ArgsConstants.DOGFILE_HELP)
+    # Replace None with parser.parse_args() parsed argument collection that
+    # you created with this function
+    return parser.parse_args()
